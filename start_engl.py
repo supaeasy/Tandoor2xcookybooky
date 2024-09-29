@@ -53,9 +53,9 @@ env.filters['replace_min_space'] = replace_min_space
 env.filters['decimal_to_nicefrac'] = decimal_to_nicefrac
 
 # API-URL to fetch total number of recipes
-api_url = "[tandoor-recipe host and port]/api/recipe/" #replace with your info
+api_url = "[YOUR_TANDOOR_HOST]/api/recipe/" #replace with your info
 headers = {
-    "Authorization": "Bearer tda_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" #your API token goes here
+    "Authorization": "Bearer tda_xxxxxxxxxxxxxxxxxxxxxxxxxxxxx" #your API token goes here
 }
 
 # API-call, to fetch total number of recipes
@@ -75,13 +75,39 @@ choice = input("Would you like to export a certain recipe (enter ID) or all (a)?
 # Load Template
 template = env.get_template('xcookybooky-nswissgerman-11pt.txt')
 
+
+
+def download_recipe_image(recipe_data, recipe_name):
+    """Downloads image and saves to Pictures"""
+    if 'image' in recipe_data and recipe_data['image']:
+        image_url = recipe_data['image']
+        image_response = requests.get(image_url)
+        
+        if image_response.status_code == 200:
+            image_extension = os.path.splitext(image_url)[1]  
+            image_path = os.path.join(pictures_dir, f"{recipe_name}{image_extension}")
+            
+            # Speichere das Bild im Pictures-Ordner
+            with open(image_path, 'wb') as image_file:
+                image_file.write(image_response.content)
+            
+            print(f"Picture for {recipe_name} downloaded successfully.")
+        else:
+            print(f"Picture could not be downloaded: {image_url}")
+    else:
+        print(f"No picture found for {recipe_name}.")
+
 # Folder for exported LaTeX-Files
 output_dir = "exported_recipes"
 os.makedirs(output_dir, exist_ok=True)
 
+# Create Folder for picture downloads
+pictures_dir = os.path.join(output_dir, "Pictures")
+os.makedirs(pictures_dir, exist_ok=True)
+
 def fetch_recipe_data(recipe_id):
     """ Gets selected recipe from API """
-    recipe_url = f"[tandoor-recipe host and port]api/recipe/{recipe_id}/" #replace with your info
+    recipe_url = f"[YOUR_TANDOOR_HOST]/api/recipe/{recipe_id}/" #replace with your info
     response = requests.get(recipe_url, headers=headers)
     
     if response.status_code == 200:
@@ -96,7 +122,7 @@ if choice.lower() == 'a':  # Export all Recipes
         
         if recipe_data:
             # Name file like recipe (Replace unwanted characters)
-            recipe_name = recipe_data['name'].replace(" ", "_").replace("/", "-")  
+            recipe_name = recipe_data['name'].replace("/", "-")  
             output_path = os.path.join(output_dir, f"{recipe_name}.tex")
             
             # Render Template
@@ -105,8 +131,10 @@ if choice.lower() == 'a':  # Export all Recipes
             # Save rendered LaTeX-File
             with open(output_path, 'w') as file:
                 file.write(latex_content)
+            # Download recipe image
+            download_recipe_image(recipe_data, recipe_name)
             
-            print(f"{recipe_name}.tex wurde erfolgreich exportiert.")
+            print(f"{recipe_name}.tex exported successfully.")
 else:
     # User enters recipe ID
     recipe_id = int(choice)
@@ -116,7 +144,7 @@ else:
     
     if recipe_data:
         # Name file like recipe (Replace unwanted characters)
-        recipe_name = recipe_data['name'].replace(" ", "_").replace("/", "-")
+        recipe_name = recipe_data['name'].replace("/", "-")
         output_path = os.path.join(output_dir, f"{recipe_name}.tex")
         
         # Render Template
@@ -125,7 +153,9 @@ else:
         # Save rendered LaTeX-File
         with open(output_path, 'w') as file:
             file.write(latex_content)
+        # Download recipe image
+        download_recipe_image(recipe_data, recipe_name)
         
-        print(f"{recipe_name}.tex successfully exported.")
+        print(f"{recipe_name}.tex exported successfully.")
     else:
         print(f"Recipe ID {recipe_id} not found.")
