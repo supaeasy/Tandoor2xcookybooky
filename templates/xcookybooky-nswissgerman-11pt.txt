@@ -13,7 +13,7 @@
 \renewcommand{\subsectionmark}[1]{}
 \usepackage{hyperref}
 \hypersetup{%
-pdfauthor={supaeasy},
+pdfauthor={yourname},
 pdftitle={<< recipe.name >>},
 pdfsubject={Rezept},
 pdfkeywords={Rezept Kochbuch xcookybooky LaTeX, Recipe},
@@ -37,10 +37,10 @@ filecolor={black}
 \thispagestyle{empty}
 
 \begin{recipe}[preparationtime = {\unit[<< recipe.working_time >>]{min}}, bakingtime={\unit[<< recipe.waiting_time >>]{min}}, portion = \portion{<< recipe.servings | decimal_to_nicefrac >>\hspace{0.2em}}, source = \href{<< recipe.source_url >>}{<< recipe.source_url >>}]{<< recipe.name >>}
-\graph{big=<< recipe.image >>}
+\graph{big=Pictures/<< recipe.name >>.jpg}
 
 \ingredients{%
-<<% for step in recipe.steps %>><<% for ingredient in step.ingredients %>>\unit[<< ingredient.amount| decimal_to_nicefrac >>]<<% if ingredient.unit %>>{<<% if ingredient.amount > 1 %>><< ingredient.unit.plural_name >><<# Pluralform der Einheit #>><<% else %>><< ingredient.unit.name >><<# Singularform der Einheit #>><<% endif %>>}<<% else %>><<% if ingredient.amount > 1 %>> & << ingredient.food.plural_name >><<# Pluralform der Zutat #>><<% else %>><< ingredient.food.name >><<# Singularform der Zutat #>><<% endif %>><<% endif %>><<% if ingredient.amount > 1 and ingredient.unit %>> & << ingredient.food.name >><<# Singularform der Zutat #>><<% endif %>><<% if ingredient.note %>> {\textit{\footnotesize << ingredient.note >>}} <<% endif %>>\\
+<<% for step in recipe.steps %>><<% for ingredient in step.ingredients %>>\unit[<< ingredient.amount| decimal_to_nicefrac >>]<<% if ingredient.unit and ingredient.unit.name != "-" %>>{<<% if ingredient.amount > 1 %>><< ingredient.unit.plural_name >><<# Pluralform der Einheit #>><<% else %>><< ingredient.unit.name >><<# Singularform der Einheit #>><<% endif %>>}<<% else %>><<% if ingredient.amount > 1 %>> & << ingredient.food.plural_name >><<# Pluralform der Zutat #>><<% else %>><< ingredient.food.name >><<# Singularform der Zutat #>><<% endif %>><<% endif %>><<% if ingredient.amount > 1 and ingredient.unit and ingredient.unit.name != "-" %>> & << ingredient.food.name >><<# Singularform der Zutat #>><<% endif %>><<% if ingredient.note %>> {\textit{\footnotesize << ingredient.note >>}} <<% endif %>>\\
 <<% endfor %>><<% endfor %>>}
 
 <<% if recipe.description %>>\introduction{<< recipe.description | replace_celsius >>} <<% endif %>>
