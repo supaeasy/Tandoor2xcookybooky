@@ -1,0 +1,69 @@
+
+\documentclass[a4paper, 11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[nswissgerman]{babel}
+\usepackage{nicefrac}
+\usepackage[nowarnings,myconfig]{xcookybooky}
+\DeclareRobustCommand{\textcelcius}{\ensuremath{^{\circ}\mathrm{C}}\hspace{0.3em}}
+\setcounter{secnumdepth}{1}
+\renewcommand*{\recipesection}[2][]{\subsection[#1]{#2}}
+\renewcommand{\subsectionmark}[1]{}
+\usepackage{hyperref}
+\hypersetup{%
+pdfauthor={yourname},
+pdftitle={Asiapfanne mit Reis},
+pdfsubject={Rezept},
+pdfkeywords={Rezept Kochbuch xcookybooky LaTeX, Recipe},
+pdfstartview={FitV},
+pdfview={FitH},
+pdfpagemode={UseNone},
+bookmarksopen={true},
+colorlinks={true},
+linkcolor={black},
+urlcolor={blue},
+citecolor={black},
+filecolor={black}
+}
+\hbadness=10000
+\setlength{\headsep}{0.5cm}
+\setlength{\footskip}{14pt}
+\setlength{\topmargin}{-1cm} \setlength{\textheight}{25.5cm}
+\renewcommand{\step}{\stepcounter{step}\lettrine[lines=2,lhang=0,loversize=0.15,slope=0em,findent=1em,nindent=0em]{\thestep}{}}
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{recipe}[preparationtime = {\unit[30]{min}}, bakingtime={\unit[15]{min}}, portion = \portion{4\hspace{0.2em}}, source = \href{Schnelles für Mutter und Kind  Seite 54}{Schnelles für Mutter und Kind  Seite 54}]{Asiapfanne mit Reis}
+\graph{big=Pictures/Asiapfanne mit Reis.jpg}
+
+\ingredients{%
+\unit[400]{g} & Rinderfilet {\textit{\footnotesize in Streifen}} \\
+\unit[700]{g} & Spitzkohl {\textit{\footnotesize in Streifen}} \\
+\unit[2] & rote Paprikas {\textit{\footnotesize gewürfelt}} \\
+\unit[2] & gelbe Zwiebeln {\textit{\footnotesize gewürfelt}} \\
+\unit[2]{Esslöffel} & Sesam\\
+\unit[4]{Esslöffel} & Sesamöl\\
+\unit[2]{Prisen} & Salz\\
+\unit[4]{Esslöffel} & Ketchup\\
+\unit[2]{Esslöffel} & Sojasauce\\
+\unit[2]{-} & Chilischote\\
+\unit[6]{Stängel} & Koriander\\
+\unit[2]{Esslöffel} & Sherry\\
+\unit[1\nicefrac{1}{2}]{Tassen} & Reis\\
+}
+
+
+\preparation{%
+\step{Fleisch in dünne Streifen schneiden. Kohl und Paprikaschote waschen und zerkleinern. Kohl in feine Streifen und Paprika in kleine Stücke schneiden.}
+\step{Sesam im Wok ohne Öl kurz anrösten und rausnehmen. Im gleichen Wok Öl erhitzen und das Fleisch rundum kräftig anbraten, salzen und herausnehmen.}
+\step{Paprika, Kohl und Zwiebeln in die Pfanne geben und darin anbraten. Bei mittlerer Hitze zugedeckt ca. 5~Min. schmoren.}
+\step{Ketchup, Sojasauce und pro Portion 3 EL Wasser verrühren und zum Gemüse geben. Fleisch ebenfalls zugeben und alles aufkochen. Chili und Koriander klein hacken.}
+\step{Kinderportion zur Seite stellen und mit etwas Sesam bestreuen. Zum Rest Sherry und Chili zum Gemüse geben und aufkochen. Mit Koriander und Sesam garnieren und Servieren.}
+}
+
+\hint{Wok}
+\end{recipe}
+\end{document}
