@@ -10,4 +10,3 @@ What does this do?
 
 This script saves one or all (user selection) recipes from Tandoor recipes into .tex files using xcookybooky package and downloads its corresponding image. You will need to render these files with a LaTeX interpreter. The simplest way is to upload all of the .tex files and the Picture folder to overleaf.com In the same folder as .tex files in overleaf add xcookybooky.cfg and edit it to your needs. Here you can adjust the language.
 
-
