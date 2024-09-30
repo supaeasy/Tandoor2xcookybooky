@@ -12,6 +12,6 @@ What does this do?
 
 This script saves one or all (user selection. The ID is the last number shown in URL bar when viewing a recipe) recipes from Tandoor recipes into .tex files using xcookybooky package and downloads its corresponding image. You will need to render these files with a LaTeX interpreter. The simplest way is to upload all of the .tex files and the Picture folder to overleaf.com In the same folder as .tex files in overleaf add xcookybooky.cfg and edit it to your needs. Here you can adjust the language.
 
-Plurals as well as Fractions are supported. If you (like me) like to have empty units for normally unitless items but don't want to miss on conversion functions, you can add a unit "-" (without quotation marks). This will be filtered when creating the .tex file.
+Plurals as well as Fractions are supported. If you (like me) like to have empty units for normally unitless items but don't want to miss on conversion functions, you can create a unit "-" (without quotation marks) in Tandoor recipes. This will be filtered when creating the .tex file.
 
 ![image](https://github.com/user-attachments/assets/a8b35a96-35c9-476d-a85f-af443b45c91d)
