@@ -36,7 +36,7 @@ filecolor={black}
 \begin{document}
 \thispagestyle{empty}
 
-\begin{recipe}[preparationtime = {\unit[<< recipe.working_time >>]{min}}, bakingtime={\unit[<< recipe.waiting_time >>]{min}}, portion = \portion{<< recipe.servings | decimal_to_nicefrac >>\hspace{0.2em}}, source = \href{<< recipe.source_url >>}{<< recipe.source_url >>}]{<< recipe.name >>}
+\begin{recipe}[preparationtime = {\unit[<< recipe.working_time >>]{min}}, bakingtime={\unit[<< recipe.waiting_time >>]{min}}, portion = \portion{<< recipe.servings | decimal_to_nicefrac >>\hspace{0.2em}}, source = \href{<< recipe.source_url >>}{<< recipe.source_domain >>}]{<< recipe.name >>}
 \graph{big=Pictures/<< recipe.name >>.jpg}
 
 \ingredients{%
