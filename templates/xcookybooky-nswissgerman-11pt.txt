@@ -40,7 +40,7 @@ filecolor={black}
 \graph{big=Pictures/<< recipe.name >>.jpg}
 
 \ingredients{%
-<<% for step in recipe.steps %>><<% for ingredient in step.ingredients %>>\unit[<< ingredient.amount| decimal_to_nicefrac >>]<<% if ingredient.unit and ingredient.unit.name != "-" %>>{<<% if ingredient.amount > 1 %>><< ingredient.unit.plural_name >><<# Pluralform der Einheit #>><<% else %>><< ingredient.unit.name >><<# Singularform der Einheit #>><<% endif %>>}<<% else %>><<% if ingredient.amount > 1 %>> & << ingredient.food.plural_name >><<# Pluralform der Zutat #>><<% else %>><< ingredient.food.name >><<# Singularform der Zutat #>><<% endif %>><<% endif %>><<% if ingredient.amount > 1 and ingredient.unit and ingredient.unit.name != "-" %>> & << ingredient.food.name >><<# Singularform der Zutat #>><<% endif %>><<% if ingredient.note %>> {\textit{\footnotesize << ingredient.note >>}} <<% endif %>>\\
+<<% for step in recipe.steps %>><<% for ingredient in step.ingredients %>>\unit[<< ingredient.amount| decimal_to_nicefrac >>]<<% if ingredient.unit and ingredient.unit.name != "-" %>>{<<% if ingredient.amount > 1 and ingredient.unit.plural_name %>><< ingredient.unit.plural_name >><<% else %>><< ingredient.unit.name >><<% endif %>>}<<% endif %>> & <<% if ingredient.amount > 1 and ingredient.food.plural_name %>><< ingredient.food.plural_name >><<% else %>><< ingredient.food.name >><<% endif %>><<% if ingredient.note %>> {\textit{\footnotesize << ingredient.note >>}} <<% endif %>>\\
 <<% endfor %>><<% endfor %>>}
 
 <<% if recipe.description %>>\introduction{<< recipe.description | replace_celsius >>} <<% endif %>>
