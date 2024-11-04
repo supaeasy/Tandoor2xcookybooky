@@ -14,6 +14,7 @@ What does this do?
 This script saves one or all (user selection. The ID is the last number shown in URL bar when viewing a recipe) recipes from Tandoor recipes into .tex files using xcookybooky package and downloads its corresponding image. You will need to render these files with a LaTeX interpreter. The simplest way to do this is uploading all of the .tex files and the Picture folder to overleaf.com. In the same folder as .tex files in overleaf add xcookybooky.cfg and edit it to your needs. You can adjust the language of headers here.
 
 Plurals as well as Fractions are supported. If you (like me) like to have empty units for normally unitless items but don't want to miss out on conversion functions, you can create a unit "-" (without quotation marks) in Tandoor recipes. This will be filtered when creating the .tex file.
+I am using the portions field from Tandoor to display kitchen supplies on the bottom hint page. If this ever gets a separate field in Tandoor I will update the script accordingly.
 
 If you feel like spacing looks a little odd between step paragraphs, try adding more text per step/reducing steps and/or setting the font size to 12pt. At least 3 Lines of text per step are recommended.
 
