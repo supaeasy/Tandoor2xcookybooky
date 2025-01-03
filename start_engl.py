@@ -5,6 +5,13 @@ from jinja2 import Environment, FileSystemLoader, Template
 from fractions import Fraction
 from urllib.parse import urlparse
 
+
+api_url = "[YOUR_TANDOOR_HOST]/api"
+recipe_url = f"{api_url}/recipe"
+headers = {
+    "Authorization": "Bearer [YOUR_TANDOOR_TOKEN]"
+}
+
 def extract_domain(url):
     if not url:
         return None
@@ -16,8 +23,8 @@ def extract_domain(url):
 
 def fetch_recipe_data(recipe_id):
     """Fetches recipe Data from API and extracts domain from source_url"""
-    recipe_url = f"[YOUR_TANDOOR_HOST]/api/recipe/{recipe_id}/"
-    response = requests.get(recipe_url, headers=headers)
+    recipe_id_url = f"{recipe_url}/{recipe_id}/"
+    response = requests.get(recipe_id_url, headers=headers)
     if response.status_code == 200:
         recipe_data = response.json()
         if 'source_url' in recipe_data and recipe_data['source_url']:
@@ -69,12 +76,7 @@ env.filters['replace_celsius'] = replace_celsius
 env.filters['replace_min_space'] = replace_min_space
 env.filters['decimal_to_nicefrac'] = decimal_to_nicefrac
 
-api_url = "[YOUR_TANDOOR_HOST]/api/recipe/"
-headers = {
-    "Authorization": "Bearer [YOUR_TANDOOR_TOKEN]"
-}
-
-response = requests.get(api_url, headers=headers)
+response = requests.get(recipe_url, headers=headers)
 if response.status_code == 200:
     data = response.json()
     total_count = data['count']
