@@ -115,7 +115,7 @@ if choice.lower() == 'a':
             recipe_name = recipe_data['name'].replace("/", "-")
             output_path = os.path.join(output_dir, f"{recipe_name}.tex")
             latex_content = template.render(recipe=recipe_data)
-            with open(output_path, 'w') as file:
+            with open(output_path, 'w', encoding="utf-8") as file:
                 file.write(latex_content)
             download_recipe_image(recipe_data, recipe_name)
             print(f"{recipe_name}.tex exported successfully.")
@@ -126,7 +126,7 @@ else:
         recipe_name = recipe_data['name'].replace("/", "-")
         output_path = os.path.join(output_dir, f"{recipe_name}.tex")
         latex_content = template.render(recipe=recipe_data)
-        with open(output_path, 'w') as file:
+        with open(output_path, 'w', encoding="utf-8") as file:
             file.write(latex_content)
         download_recipe_image(recipe_data, recipe_name)
         print(f"{recipe_name}.tex exported successfully.")
