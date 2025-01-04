@@ -37,6 +37,21 @@ def fetch_recipe_data(recipe_id):
         print(f"Recipe-ID {recipe_id} could not be found (Status: {response.status_code}).")
         return None
 
+def download_recipe_image(recipe_data, recipe_name):
+    if 'image' in recipe_data and recipe_data['image']:
+        image_url = recipe_data['image']
+        image_response = requests.get(image_url)
+        if image_response.status_code == 200:
+            image_extension = os.path.splitext(image_url)[1]
+            image_path = os.path.join(pictures_dir, f"{recipe_name}{image_extension}")
+            with open(image_path, 'wb') as image_file:
+                image_file.write(image_response.content)
+            print(f"Picture for {recipe_name} downloaded successfully.")
+        else:
+            print(f"Picture could not be downloaded: {image_url}")
+    else:
+        print(f"No picture found for {recipe_name}.")
+
 def decimal_to_nicefrac(value):
     try:
         value = float(value)
@@ -88,21 +103,6 @@ else:
 choice = input("Would you like to export a certain recipe (enter ID) or all (a)? ")
 
 template = env.get_template('xcookybooky-nswissgerman-11pt.txt')
-
-def download_recipe_image(recipe_data, recipe_name):
-    if 'image' in recipe_data and recipe_data['image']:
-        image_url = recipe_data['image']
-        image_response = requests.get(image_url)
-        if image_response.status_code == 200:
-            image_extension = os.path.splitext(image_url)[1]
-            image_path = os.path.join(pictures_dir, f"{recipe_name}{image_extension}")
-            with open(image_path, 'wb') as image_file:
-                image_file.write(image_response.content)
-            print(f"Picture for {recipe_name} downloaded successfully.")
-        else:
-            print(f"Picture could not be downloaded: {image_url}")
-    else:
-        print(f"No picture found for {recipe_name}.")
 
 output_dir = "exported_recipes"
 os.makedirs(output_dir, exist_ok=True)
