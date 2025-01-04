@@ -3,7 +3,7 @@ A tiny script using jinja2 Templating for transscription of recipes into LaTeX d
 
 
 - You need to create an api Token first. Visit [tandoor-recipe host and port]/api/access-token/ and create a token. In scope enter "read" (omit quotation marks)
-- Enter your IP and port in 2 places where it says [YOUR_TANDOOR_HOST] into start_engl.py
+- Enter your IP and port where it says [YOUR_TANDOOR_HOST] into start_engl.py
 - add [YOUR_TANDOOR_TOKEN] into start_engl.py including tda_
 - You may want to adjust pdfauthor={yourname}, \usepackage[nswissgerman]{babel} and maybe adjust the text size in xcookybooky-nswissgerman-11pt.txt
 - adjust xcookybooky.cfg to your needs
