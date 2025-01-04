@@ -111,7 +111,8 @@ pictures_dir = os.path.join(output_dir, "Pictures")
 os.makedirs(pictures_dir, exist_ok=True)
 
 if choice.lower() == 'a':
-    for recipe_id in range(1, total_count + 1):
+    for recipe in data['results']:
+        recipe_id = recipe['id']
         recipe_data = fetch_recipe_data(recipe_id)
         if recipe_data:
             recipe_name = recipe_data['name'].replace("/", "-")
